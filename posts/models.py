@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser 
 from django.shortcuts import reverse
+from django.utils.text import slugify
 
 class Usuario(AbstractUser):
     # AbstractUser se encarga de username, mail y contraseña
@@ -17,10 +18,20 @@ class Post(models.Model):
     fec_publicacion = models.DateTimeField(auto_now_add=True)
     fec_actualizacion = models.DateTimeField(auto_now=True)
     autor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True, max_length=150, blank=True, editable=False)
 
     def __str__(self):
         return self.titulo
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titulo)
+            # Verificar si el slug ya existe, si es así, agregar un número al final
+            counter = 1
+            while Post.objects.filter(slug=self.slug).exists():
+                self.slug = f"{slugify(self.titulo)}-{counter}"
+                counter += 1
+        super().save(*args, **kwargs)
     
     def get_absolute_url(self):
         return reverse("detalle-post", kwargs={'slug': self.slug})

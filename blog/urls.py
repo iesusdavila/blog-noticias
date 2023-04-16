@@ -17,7 +17,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', VistaListaPosts.as_view(), name='lista-posts'),
     path('crear/', VistaCreaPost.as_view(), name='crea-post'),
-    path('<slug>/', VistaDetallePost.as_view(), name='detalle-post'),
+    path('<slug:slug>/', VistaDetallePost.as_view(), name='detalle-post'),
     path('<slug>/actualizar-post/', VistaActualizaPost.as_view(), name='actualiza-post'),
     path('<slug>/borrar-post/', VistaBorraPosts.as_view(), name='borra-post'),
     path('like/<slug>/', like, name='like')
