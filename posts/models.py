@@ -19,10 +19,12 @@ class Post(models.Model):
     fec_actualizacion = models.DateTimeField(auto_now=True)
     autor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, max_length=150, blank=True, editable=False)
-
+    
+    # String cuando se llama directamente a la clase
     def __str__(self):
         return self.titulo
     
+    # Colocar como slug al titulo separado por guiones
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.titulo)
@@ -33,27 +35,39 @@ class Post(models.Model):
                 counter += 1
         super().save(*args, **kwargs)
     
+    # Llamar al URL absoluto
     def get_absolute_url(self):
         return reverse("detalle-post", kwargs={'slug': self.slug})
     
+    # URL cuando se da like a un post
     def get_like_url(self):
         return reverse("like", kwargs={'slug': self.slug})
     
+    # Numero de comentarios
     @property
     def get_comentario_count(self):
         return self.comentario_set.all().count()
     
+    # Listar todos los comentarios 
     @property
     def comentarios(self):
         return self.comentario_set.all()
     
+    # Numero de visualizaciones
     @property
     def get_visualizacion_count(self):
         return self.visualizacion_set.all().count()
     
+    # Fecha de la ultima vez visto el post
+    @property
+    def get_last_view_post(self):
+        return self.visualizacion_set.last().fec_visual
+    
+    # Numero de likes
     @property
     def get_like_count(self):
         return  self.like_set.all().count()
+    
       
 class Comentario(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
