@@ -25,7 +25,25 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("detalle-post", kwargs={'slug': self.slug})
     
-
+    def get_like_url(self):
+        return reverse("like", kwargs={'slug': self.slug})
+    
+    @property
+    def get_comentario_count(self):
+        return self.comentario_set.all().count()
+    
+    @property
+    def comentarios(self):
+        return self.comentario_set.all()
+    
+    @property
+    def get_visualizacion_count(self):
+        return self.visualizacion_set.all().count()
+    
+    @property
+    def get_like_count(self):
+        return  self.like_set.all().count()
+      
 class Comentario(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -38,7 +56,7 @@ class Comentario(models.Model):
 class Visualizacion(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    fec_cmt = models.DateTimeField(auto_now_add=True)
+    fec_visual = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.usuario.username        

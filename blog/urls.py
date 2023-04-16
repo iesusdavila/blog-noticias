@@ -8,7 +8,8 @@ from posts.views import (
     VistaDetallePost,
     VistaCreaPost,
     VistaActualizaPost,
-    VistaBorraPosts
+    VistaBorraPosts,
+    like
 )
 
 urlpatterns = [
@@ -19,6 +20,7 @@ urlpatterns = [
     path('<slug>/', VistaDetallePost.as_view(), name='detalle-post'),
     path('<slug>/actualizar-post/', VistaActualizaPost.as_view(), name='actualiza-post'),
     path('<slug>/borrar-post/', VistaBorraPosts.as_view(), name='borra-post'),
+    path('like/<slug>/', like, name='like')
 ]
 
 if settings.DEBUG:

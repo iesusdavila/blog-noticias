@@ -7,8 +7,13 @@
   </head>
 
   <body>
-    {% block content %}
-    <p>Hola</p>
-    {% endblock %}
+      <ul>
+            <li><a href=" {% url 'lista-posts' %} ">Home</a></li>
+            <li><a href="#">Crear</a></li>
+      </ul>
+
+      {% block content %}
+      
+      {% endblock %}
   </body>
 </html>

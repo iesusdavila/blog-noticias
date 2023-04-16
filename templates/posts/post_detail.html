@@ -1,3 +1,44 @@
-{% extends "base.html" %} {% block content %}
-<div class="container">{{object.titulo}}</div>
+{% extends "base.html" %} 
+{% block content %}
+      <div class="container">
+            {{object.titulo}}
+            <p>
+                  <span>Vistas: {{ object.get_visualizacion_count }}</span>
+                  <span>Likes:  {{ object.get_like_count }}</span>
+                  <span>Comentarios:  {{ object.get_comentario_count }}</span>
+            </p>
+            <p>
+                  {{ object.fec_publicacion|timesince }} atras
+            </p>
+            <p>
+                  {% if object.fec_publicacion == object.fec_publicacion  %}
+                  Sin actualizaciones
+                  {% else %}
+                        {{ object.fec_publicacion|timesince }} atras
+                  {% endif %}
+            </p>
+            <p>
+                  {{ object.contenido }}
+            </p>
+            <a href="{{ object.get_like_url  }}">Dame un like 🤘🏼</a> {{ object.get_like_count }}
+
+            {% if request.user.is_authenticated %}
+                  <p>Deja un comentario</p> 
+                  <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Publicar comentario</button>
+                  </form>
+                  <p>Comentarios</p>
+                  {% for comentario  in object.comentarios  %}
+                        <div>
+                              <p>
+                                    {{ comentario.contenido }}
+                                    <br/>
+                                    <span>{{ comentario.fec_cmt|timesince }} atras</span>
+                              </p>
+                        </div>
+                  {% endfor %}
+            {% endif %}
+      </div>
 {% endblock %}

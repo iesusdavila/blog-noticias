@@ -2,9 +2,27 @@
 {% block content %}
       <div class="container">
             {% for object in object_list %}
-                  <a href="{{ object.get_absolute_url }}" style="vismargin:10px;">
+                  <a href="{{ object.get_absolute_url }}" >
                         <p>{{object.titulo}}</p>
                         <p>{{object.contenido}}</p>
+                        <hr/>
+                        <p>
+                              <span>Vistas: {{ object.get_visualizacion_count }}</span>
+                              <span>Likes:  {{ object.get_like_count }}</span>
+                              <span>Comentarios:  {{ object.get_comentario_count }}</span>
+                        </p>
+                        <hr/>
+                        <p>
+                              {{ object.fec_publicacion|timesince }} atras
+                        </p>
+                        <hr/>
+                        <p>
+                              {% if object.fec_publicacion == object.fec_publicacion  %}
+                                   Sin actualizaciones
+                              {% else %}
+                                    {{ object.fec_publicacion|timesince }} atras
+                              {% endif %}
+                        </p>
                   </a>
             {% endfor %}
       </div>
