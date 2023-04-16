@@ -1,0 +1,11 @@
+{% extends "base.html" %} 
+{% block content %}
+      <div class="container">
+            {% for object in object_list %}
+                  <a href="{{ object.get_absolute_url }}" style="vismargin:10px;">
+                        <p>{{object.titulo}}</p>
+                        <p>{{object.contenido}}</p>
+                  </a>
+            {% endfor %}
+      </div>
+{% endblock content %}
