@@ -1,4 +1,6 @@
 {% extends "base.html" %} 
+{% load static %}
+
 {% block content %}
       <div class="container">
             {{object.titulo}}
@@ -41,10 +43,13 @@
                         <div>
                               <p>
                                     {{ comentario.contenido }}
-                                    <br/>
-                                    <span>{{ comentario.fec_cmt|timesince }} atras</span>
                               </p>
-                              <button class="comment-edit-btn" data-comment-id="{{ comentario.id }}">Editar</button>
+                              <span>
+                                    {{ comentario.fec_cmt|timesince }} atras
+                              </span>
+                              <button class="editar-comentario" data-id="{{ comentario.id }}">Editar</button>
+                              <button class="eliminar-comentario" data-id="{{ comentario.id }}">Eliminar</button>
+                              {% comment %} <button class="comment-edit-btn" data-comment-id="{{ comentario.id }}">Editar</button>
                               <button class="comment-delete-btn" data-comment-url="{{ comentario.get_absolute_url }}">Eliminar</button>
                               <div class="comment-edit-form" style="display:none;">
                                     <form method="POST">
@@ -53,9 +58,13 @@
                                     <button type="submit">Guardar</button>
                                     <button type="button" class="cancel-edit-btn">Cancelar</button>
                                     </form>
-                              </div>
+                              </div> {% endcomment %}
                         </div>
                   {% endfor %}
             {% endif %}
       </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{% static 'blog/js/post_detail.js' %}"></script>
+
 {% endblock %}
