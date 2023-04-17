@@ -1,29 +1,68 @@
-{% extends "base.html" %} 
-{% block content %}
-      <div class="container">
-            {% for object in object_list %}
-                  <a href="{{ object.get_absolute_url }}" >
-                        <p>{{object.titulo}}</p>
-                        <p>{{object.contenido}}</p>
-                        <hr/>
-                        <p>
-                              <span>Vistas: {{ object.get_visualizacion_count }}</span>
-                              <span>Likes:  {{ object.get_like_count }}</span>
-                              <span>Comentarios:  {{ object.get_comentario_count }}</span>
-                        </p>
-                        <hr/>
-                        <p>
-                              {{ object.fec_publicacion|timesince }} atras
-                        </p>
-                        <hr/>
-                        <p>
-                              {% if object.fec_publicacion == object.fec_publicacion  %}
-                                   Sin actualizaciones
-                              {% else %}
-                                    {{ object.fec_publicacion|timesince }} atras
-                              {% endif %}
-                        </p>
-                  </a>
-            {% endfor %}
-      </div>
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <main
+    class="grid gap-10 grid-cols-2 md:grid-cols-3 px-6 xl:px-64 py-8 w-screen"
+  >
+    {% for object in object_list %}
+    <a href="{{ object.get_absolute_url }}">
+      <section
+        class="bg-slate-100 rounded-lg transition duration-1000 ease-in-out transform hover:bg-green-400 hover:shadow-lg mx-auto shadow-lg overflow-hidden h-[400px]"
+      >
+        <div class="relative h-48">
+          <img
+            class="absolute inset-0 w-full h-full object-cover"
+            src="https://pbs.twimg.com/media/DKoGMBrWkAAwHIH?format=jpg&name=large"
+            alt=""
+          />
+        </div>
+        <div class="px-4 py-2 flex flex-col h-3/6">
+          <div class="text-gray-600 font-medium mb-2">
+            {{ object.fec_publicacion|timesince }} atras
+          </div>
+          <p
+            class="text-2xl font-semibold text-gray-900 hover:text-gray-700 transition duration-300"
+          >
+            {{object.titulo}}
+          </p>
+          <p class="text-gray-600 mt-2">{{object.contenido}}</p>
+          <div
+            class="self-end flex items-center justify-between mt-4 text-gray-600"
+          >
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 20 20">
+                <path d="M13 5V2H7v3H2v11h16V5h-5zm3 9H4v-2h12v2z" />
+              </svg>
+              <span>{{ object.get_visualizacion_count }}</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M10 18.973l-1.973-1.799C3.652 13.697 0 10.45 0 7.5 0 3.364 3.364 0 7.5 0S15 3.364 15 7.5c0 2.95-3.652 6.197-8.027 9.674L10 18.973zm0-3.375l3.18-2.907C14.014 11.588 15 9.559 15 7.5 15 4.462 12.538 2 9.5 2S4 4.462 4 7.5c0 1.947.986 4.088 2.82 6.195L10 15.598z"
+                />
+              </svg>
+              <span>{{ object.get_like_count }}</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M18 3H2C.9 3 0 3.9 0 5v8c0 1.1.9 2 2 2h2.2l2.8 3V17h9c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 10h-7v3l-2.5-2.5-2.5 2.5v-3H2V5h16v8z"
+                />
+              </svg>
+              <span>{{ object.get_comentario_count }}</span>
+            </div>
+            <div class="text-gray-600">
+              <span
+                >{% if object.fec_publicacion == object.fec_publicacion %} Sin
+                actualizaciones {% else %} {{ object.fec_publicacion|timesince
+                }} atras {%endif %}</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </a>
+    {% endfor %}
+  </main>
+</div>
 {% endblock content %}

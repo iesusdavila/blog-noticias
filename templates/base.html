@@ -1,21 +1,44 @@
 {% load static tailwind_tags %}
 
-<!DOCTYPE html>
-<html>
-  <head>
+<html lang="es">
+  <html>
+    <head>
+      <meta charset="UTF-8" />
       {% tailwind_css %}
-    <meta charset="UTF-8" />
-    <title>Blog</title>
-  </head>
 
-  <body>
-      <ul>
-            <li><a href=" {% url 'lista-posts' %} ">Home</a></li>
-            <li><a href=" {% url 'crea-post' %}">Crear</a></li>
-      </ul>
+      <title>Blog</title>
+    </head>
 
-      {% block content %}
-      
-      {% endblock %}
-  </body>
+    <body class="bg-blue-300">
+      <header class="border-4 border-indigo">
+        <nav
+          class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8"
+          aria-label="Global"
+        >
+          <div class="flex md:flex-1">
+            <a href=" {% url 'lista-posts' %} " class="-m-1.5 p-1.5">
+              <span class="sr-only">Blopster</span>
+              <img
+                class="h-8 w-auto"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="md:flex md:gap-x-12">
+            <a href=" {% url 'lista-posts' %} " class="link-nav">Home </a>
+            <a href=" {% url 'crea-post' %} " class="link-nav">Crear Blog</a>
+            <a href="#" class="link-nav">Configurar</a>
+            <a href="#" class="link-nav">About</a>
+          </div>
+          <div class="md:flex md:flex-1 md:justify-end">
+            <a href="#" class="link-nav hover:text-green-600">
+              Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </nav>
+      </header>
+      {% block content %} {% endblock %}
+    </body>
+  </html>
 </html>

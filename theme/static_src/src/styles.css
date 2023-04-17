@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* creando un componente para el boton */
+  .link-nav {
+    @apply text-base font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition duration-300 ease-in-out;
+  }
+}

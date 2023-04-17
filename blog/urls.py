@@ -20,7 +20,8 @@ urlpatterns = [
     path('<slug:slug>/', VistaDetallePost.as_view(), name='detalle-post'),
     path('<slug>/actualizar-post/', VistaActualizaPost.as_view(), name='actualiza-post'),
     path('<slug>/borrar-post/', VistaBorraPosts.as_view(), name='borra-post'),
-    path('like/<slug>/', like, name='like')
+    path('like/<slug>/', like, name='like'),
+    path("__reload__/", include("django_browser_reload.urls"))
 ]
 
 if settings.DEBUG:
