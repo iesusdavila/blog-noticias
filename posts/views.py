@@ -33,6 +33,7 @@ class VistaCreaPost(CreateView):
     form_class = PostFormulario
     model = Post
     success_url = '/'
+    template_name = 'posts/post_create.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -5,7 +5,7 @@
   {% for object in object_list %}
   <a href="{{ object.get_absolute_url }}">
     <section
-      class="bg-slate-100 rounded-lg transition duration-1000 ease-in-out transform hover:bg-indigo-300 hover:shadow-lg mx-auto drop-shadow-md shadow-lg shadow-slate-600/50 overflow-hidden sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[450px] sm:w-full md:w-full lg:w-full xl:w-full"
+      class="group bg-slate-100 rounded-lg transition duration-1000 ease-in-out transform hover:bg-indigo-300 hover:shadow-lg mx-auto drop-shadow-md shadow-lg shadow-slate-600/50 overflow-hidden sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[450px] sm:w-full md:w-full lg:w-full xl:w-full"
     >
       <div class="flex flex-col h-full">
         <div class="relative h-48">
@@ -27,7 +27,9 @@
           </p>
           <p class="text-gray-600 mt-2 flex-grow">{{object.contenido}}</p>
         </div>
-        <div class="flex items-center justify-around text-gray-600 px-4 py-3">
+        <div
+          class="flex items-center justify-around text-gray-600 px-4 py-3 transition duration-500 ease-in-out transform group-hover:bg-[#7b87c1]"
+        >
           <div class="flex items-center">
             <img
               class="object-cover border-black"
@@ -43,9 +45,7 @@
             />
             {{ object.get_like_count }}
           </div>
-          <div
-            class="flex items-center transition duration-500 ease-in-out transform"
-          >
+          <div class="flex items-center">
             <img
               class="object-cover border-spacing-3"
               src="{% static 'blog/img/comentarios.png' %}"
@@ -53,7 +53,9 @@
             />
             {{ object.get_comentario_count }}
           </div>
-          <div class="text-gray-600 hidden lg:block">
+          <div
+            class="text-gray-600 hidden lg:block transition duration-500 ease-in-out transform group-hover:text-black group-hover:font-semibold"
+          >
             <span
               >{% if object.fec_publicacion == object.fec_publicacion %} Sin
               actualizaciones {% else %} {{ object.fec_publicacion|timesince }}

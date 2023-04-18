@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% block content %}
 
 <h1>Vista de {{view_type}}</h1>
+<p>HOLAAA</p>
 
-<form method="POST" enctype='multipart/form-data'>
-  {% csrf_token %} 
-  {{form.as_p}}
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} {{form.as_p}}
   <button type="submit">{{view_type}}</button>
 </form>
 
