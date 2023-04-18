@@ -1,41 +1,51 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<div class="mx-6 xl:mx-80 px-40 py-4 bg-indigo-200/50 shadow-2xl shadow-black">
+<div class="mx-6 xl:mx-80 px-40 py-6 mt-5 bg-indigo-200/50 shadow-2xl shadow-black">
   <h1 class="text-center text-3xl font-semibold">{{ view_type }} Post</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label
         for="{{ form.titulo.id_for_label }}"
-        class="text-2xl font-medium text-gray-700"
+        class="text-2xl font-medium text-gray-800"
         >Título</label
       >
       <input
         type="text"
         name="{{ form.titulo.name }}"
         id="{{ form.titulo.id_for_label }}"
-        class="form-control rounded-md shadow-sm mt-1 block w-full"
+        class="form-control rounded-md shadow-sm block w-full mt-2 mb-2 focus:ring-green-500"
         placeholder="Ingresa el título del post"
         value="{{ form.titulo.value|default:'' }}"
       />
     </div>
-    <div class="form-group">
+    <div class="form-group mt-6 mb-6">
       <label
         for="{{ form.contenido.id_for_label }}"
-        class="text-2xl font-medium text-gray-700"
+        class="text-2xl font-medium text-gray-800"
         >Contenido</label
       >
       <textarea
         type="text"
         name="{{ form.contenido.name }}"
         id="{{ form.contenido.id_for_label }}"
-        class="form-control rounded-md shadow-sm mt-1 block w-full h-52"
+        class="form-control rounded-md shadow-sm mt-1 block w-full h-64 focus:ring-green-500"
         placeholder="Ingresa el contenido del post"
         value="{{ form.contenido.value|default:'' }}"
       ></textarea>
     </div>
-    <div class="">{{ form.autor.label_tag }} {{ form.autor }}</div>
-    <button type="submit" class="w-full py-3 bg-green-400">
-      Guardar NUNCA
+    <div class="form-group mb-6">
+            <label for="{{ form.autor.id_for_label }}" class="text-2xl font-medium text-gray-800">Autor</label>
+            <select name="{{ form.autor.name }}" id="{{ form.autor.id_for_label }}"
+            class="form-control rounded-md shadow-sm mt-1 block w-full focus:ring-green-500 ">
+            {% for autor in autores %}
+                  <option value="{{ autor.id }}" {% if autor.id|stringformat:"s" == autor_seleccionado|stringformat:"s" %}selected{% endif %}>
+                        {{ autor }}
+                  </option>
+            {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="w-11/12 py-3 bg-green-400 text-lg font-semibold rounded-lg shadow-md shadow-black block mx-auto">
+      Publicar Post
     </button>
   </form>
 </div>

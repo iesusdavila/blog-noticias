@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Comentario, Visualizacion, Like
+from .models import Post, Comentario, Visualizacion, Like, Usuario
 from .forms import PostFormulario, ComentarioFormulario
 
 class VistaListaPosts(ListView):
@@ -34,10 +34,12 @@ class VistaCreaPost(CreateView):
     model = Post
     success_url = '/'
     template_name = 'posts/post_create.html'
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["view_type"] = "Crear"
+        context['autores'] = Usuario.objects.all()
+        context['autor_seleccionado'] = self.request.GET.get('autor')
         return context
     
 
