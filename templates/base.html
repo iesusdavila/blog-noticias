@@ -1,4 +1,4 @@
-{% load static tailwind_tags %}
+{% load static tailwind_tags %} {% load static %}
 
 <html lang="es">
   <html>
@@ -19,8 +19,8 @@
             <a href=" {% url 'lista-posts' %} " class="-m-1.5 p-1.5">
               <span class="sr-only">Blopster</span>
               <img
-                class="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                class=""
+                src="{% static 'blog/img/blopster/blopster-48.png' %}"
                 alt=""
               />
             </a>
