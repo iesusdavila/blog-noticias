@@ -47,10 +47,13 @@ class VistaActualizaPost(UpdateView):
     form_class = PostFormulario
     model = Post
     success_url = '/'
+    template_name = 'posts/post_update.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["view_type"] = "Actualizar"
+        context['autores'] = Usuario.objects.all()
+        context['autor_seleccionado'] = self.request.GET.get('autor')
         return context
 
 class VistaBorraPosts(DeleteView):

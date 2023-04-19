@@ -7,4 +7,20 @@
   .link-nav {
     @apply text-lg font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition duration-300 ease-in-out;
   }
+
+  .container-form {
+    @apply mx-6 xl:mx-80 px-40 py-6 mt-5 bg-gradient-to-tr from-indigo-200/50 to-violet-200/50 shadow-2xl shadow-black;
+  }
+
+  .label-form {
+    @apply text-2xl font-medium text-gray-800;
+  }
+
+  .input-form {
+    @apply rounded-md shadow-sm block w-full mt-2 mb-2 focus:ring-green-500;
+  }
+
+  .button-form {
+    @apply w-11/12 py-3 bg-green-400 text-lg font-semibold rounded-lg shadow-md shadow-black block mx-auto;
+  }
 }
