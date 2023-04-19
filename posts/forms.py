@@ -9,4 +9,4 @@ class PostFormulario(forms.ModelForm):
 class ComentarioFormulario(forms.ModelForm):
     class Meta:
         model = Comentario
-        fields = ('contenido',)         
+        fields = ('contenido',)

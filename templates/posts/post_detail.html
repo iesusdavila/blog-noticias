@@ -1,70 +1,105 @@
-{% extends "base.html" %} 
-{% load static %}
-
-{% block content %}
-      <div class="container">
-            {{object.titulo}}
-            <ul>
-                  <li><a href=" {% url 'actualiza-post' object.slug %} ">Actualizar</a></li>
-                  <li><a href=" {% url 'borra-post' object.slug %}">Borrar</a></li>
-            </ul>
-            <p>
-                  <span>Vistas: {{ object.get_visualizacion_count }}</span>
-                  <span>Likes:  {{ object.get_like_count }}</span>
-                  <span>Comentarios:  {{ object.get_comentario_count }}</span>
-            </p>
-            <p>
-                  Visto por ultima vez: {{ object.get_last_view_post|timesince }} atras
-            </p>
-            <p>
-                  {{ object.fec_publicacion|timesince }} atras
-            </p>
-            <p>
-                  {% if object.fec_publicacion == object.fec_publicacion  %}
-                  Sin actualizaciones
-                  {% else %}
-                        {{ object.fec_publicacion|timesince }} atras
-                  {% endif %}
-            </p>
-            <p>
-                  {{ object.contenido }}
-            </p>
-            <a href="{{ object.get_like_url  }}">Dame un like 🤘🏼</a> {{ object.get_like_count }}
-
-            {% if request.user.is_authenticated %}
-                  <p>Deja un comentario</p> 
-                  <form method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Publicar comentario</button>
-                  </form>
-                  <p>Comentarios</p>
-                  {% for comentario  in object.comentarios  %}
-                        <div>
-                              <p>
-                                    {{ comentario.contenido }}
-                              </p>
-                              <span>
-                                    {{ comentario.fec_cmt|timesince }} atras
-                              </span>
-                              <button class="editar-comentario" data-id="{{ comentario.id }}">Editar</button>
-                              <button class="eliminar-comentario" data-id="{{ comentario.id }}">Eliminar</button>
-                              {% comment %} <button class="comment-edit-btn" data-comment-id="{{ comentario.id }}">Editar</button>
-                              <button class="comment-delete-btn" data-comment-url="{{ comentario.get_absolute_url }}">Eliminar</button>
-                              <div class="comment-edit-form" style="display:none;">
-                                    <form method="POST">
-                                    {% csrf_token %}
-                                    <textarea name="text">{{ comment.text }}</textarea>
-                                    <button type="submit">Guardar</button>
-                                    <button type="button" class="cancel-edit-btn">Cancelar</button>
-                                    </form>
-                              </div> {% endcomment %}
-                        </div>
-                  {% endfor %}
-            {% endif %}
+{% extends "base.html" %} {% load static %} {% block content %}
+<div
+  class="mx-6 xl:mx-60 px-20 py-6 my-5 bg-gradient-to-br from-indigo-200/25 to-blue-400/25 shadow-2xl shadow-black"
+>
+  <div
+    class="text-center text-3xl font-semibold text-black border-b border-slate-900/50 pb-3"
+  >
+    {{object.titulo}}
+  </div>
+  <div class="relative h-[37rem] py-5">
+    <img
+      class="w-full h-full object-contain"
+      src="https://pbs.twimg.com/media/DKoGMBrWkAAwHIH?format=jpg&name=large"
+      alt="{{object.titulo}}"
+    />
+  </div>
+  <div class="flex flex-wrap flex-row justify-start gap-7 px-5">
+    <p class="font-semibold text-xl">@{{object.autor}}</p>
+    <p class="font-semibold text-xl text-slate-800">
+      {{object.fec_publicacion}}
+    </p>
+  </div>
+  <div class="flex flex-wrap flex-row justify-start gap-7 px-5 py-3">
+    <p class="font-semibold text-xl">
+      <img
+        class="object-cover border-black inline mr-2"
+        src="{% static 'blog/img/vistas_personas.png' %}"
+        alt="Numero de personas que han visto el blog"
+      />{{ object.get_visualizacion_count }}
+    </p>
+    <a href="{{ object.get_like_url  }}" class="font-semibold text-xl"
+      ><img
+        class="object-cover border-black inline mr-2"
+        src="{% static 'blog/img/likes.png' %}"
+        alt="Numero de personas que han visto el blog"
+      />{{ object.get_like_count }}</a
+    >
+    <p class="font-semibold text-xl">
+      <img
+        class="object-cover border-black inline mr-2"
+        src="{% static 'blog/img/comentarios.png' %}"
+        alt="Numero de personas que han visto el blog"
+      />{{ object.get_comentario_count }}
+    </p>
+  </div>
+  <div class="flex flex-wrap flex-row justify-start gap-7 px-5 pb-3">
+    <a
+      class="bg-green-400 px-5 py-2 rounded-lg font-medium"
+      href=" {% url 'actualiza-post' object.slug %} "
+      >Actualizar</a
+    ><a
+      class="bg-red-400 px-5 py-2 rounded-lg font-medium"
+      href=" {% url 'borra-post' object.slug %}"
+      >Borrar</a
+    >
+  </div>
+  <div class="text-justify px-10 py-3 bg-slate-200">
+    <p class="text-lg text-black">{{ object.contenido }}</p>
+  </div>
+  <div class="flex flex-wrap flex-col justify-start gap-3 px-4 pt-3">
+    <p class="text-lg text-black">
+      Ultima actualizacion: {{ object.fec_actualizacion }}
+    </p>
+    <p class="text-lg text-black">
+      Visto por ultima vez: {{ object.get_last_view_post|timesince }} atras
+    </p>
+  </div>
+  {% if request.user.is_authenticated %}
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group mt-6 mb-3">
+      <label for="{{ form.contenido.id_for_label }}" class="label-form"
+        >Comentarios</label
+      >
+      <textarea
+        type="text"
+        name="{{ form.contenido.name }}"
+        id="{{ form.contenido.id_for_label }}"
+        class="form-control input-form h-24"
+        placeholder="Ingresa un comentario para el post"
+        value="{{ form.contenido.value|default:'' }}"
+      ></textarea>
+    </div>
+    <button type="submit" class="bg-green-400 px-5 py-2 rounded-md font-medium">
+      Publicar comentario
+    </button>
+  </form>
+  <div class="flex flex-wrap flex-col justify-start px-5">
+    {% for comentario in object.comentarios %}
+    <div
+      class="flex flex-wrap flex-row justify-between mb-3 border-b border-slate-900/50 pb-2"
+    >
+      <div class="flex flex-wrap flex-row justify-evenly">
+        <p class="text-lg text-black font-semibold">
+          @{{ comentario }}:&nbsp&nbsp
+        </p>
+        <p class="text-lg text-black">{{ comentario.contenido }}</p>
       </div>
-
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="{% static 'blog/js/post_detail.js' %}"></script>
-
+      <p class="text-lg text-black">{{ comentario.fec_cmt|timesince }} atras</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 {% endblock %}

@@ -42,7 +42,6 @@ class VistaCreaPost(CreateView):
         context['autor_seleccionado'] = self.request.GET.get('autor')
         return context
     
-
 class VistaActualizaPost(UpdateView):
     form_class = PostFormulario
     model = Post
