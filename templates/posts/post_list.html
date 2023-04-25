@@ -11,7 +11,7 @@
       />
     </div>
     <div
-      class="bg-[#f5f5f5] col-start-3 col-end-5 row-start-2 row-end-6 z-50 px-6 py-5"
+      class="bg-[#f5f5f5] col-start-3 col-end-5 row-start-2 row-end-6 z-50 px-6 py-5 flex flex-col justify-between flex-shrink"
     >
       <h2 class="text-2xl font-semibold text-slate-900">Hola, que tal todo?</h2>
       <p class="text-blog pt-4 pb-7">
@@ -34,22 +34,22 @@
       />
     </div>
   </div>
-  <p class="text-xl font-semibold text-slate-800 text-center px-40 pt-8 pb-4">
+  <p class="text-xl font-semibold text-slate-800 text-center px-72 pt-8 pb-4">
     Diferentes noticias del mundo actualizadas y sin relaciones intenciones de
     personas externas. Cada publicación es diferente porque entendemos que cada
     persona es un universo diferente.
   </p>
-  <p class="text-xl font-semibold text-slate-800/75 text-center px-40">
-    Sueño/Trabaja/Persevera/Disfruta
+  <p class="text-xl font-semibold text-slate-800/75 text-center px-40 pb-14">
+    Sueña/Trabaja/Persevera/Disfruta
   </p>
 </section>
 <main
-  class="mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-[15rem] 2xl:px-96 py-8 bg-[#d0e2e2]"
+  class="mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-[15rem] 2xl:px-96 py-8 bg-[#d5d7d7]"
 >
   {% for object in object_list %}
   <a href="{{ object.get_absolute_url }}">
     <section
-      class="group bg-gradient-to-br from-slate-200 to-slate-300/50 rounded-lg transition duration-700 ease-in-out transform hover:bg-indigo-400 hover:shadow-lg mx-auto drop-shadow-md shadow-lg shadow-slate-600/50 overflow-hidden sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[450px] sm:w-full md:w-full lg:w-full xl:w-full"
+      class="group bg-gradient-to-tr from-slate-100 to-slate-300/75 rounded-lg transition duration-700 ease-in-out transform hover:bg-indigo-300 hover:shadow-lg mx-auto drop-shadow-md shadow-lg shadow-slate-600/50 overflow-hidden sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[450px] sm:w-full md:w-full lg:w-full xl:w-full"
     >
       <div class="flex flex-col h-full">
         <div class="relative h-48">
