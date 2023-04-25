@@ -9,33 +9,31 @@
   </div>
   <div class="relative h-[37rem] py-5">
     <img
-      class="w-full h-full object-contain shadow-md shadow-slate-600"
+      class="w-auto mx-auto h-full object-contain shadow-md shadow-slate-600"
       src="https://images4.alphacoders.com/102/1021609.jpg"
       alt="{{object.titulo}}"
     />
   </div>
-  <div class="flex flex-wrap flex-row justify-start gap-7 px-5">
-    <p class="font-semibold text-xl">@{{object.autor}}</p>
-    <p class="font-semibold text-xl text-slate-800">
-      {{object.fec_publicacion}}
-    </p>
+  <div class="container-detail-form">
+    <p class="label-detail-blog">@{{object.autor}}</p>
+    <p class="label-detail-blog text-slate-800">{{object.fec_publicacion}}</p>
   </div>
-  <div class="flex flex-wrap flex-row justify-start gap-7 px-5 py-3">
-    <p class="font-semibold text-xl">
+  <div class="container-detail-form py-3">
+    <p class="label-detail-blog">
       <img
         class="object-cover border-black inline mr-2"
         src="{% static 'blog/img/vistas_personas.png' %}"
         alt="Numero de personas que han visto el blog"
       />{{ object.get_visualizacion_count }}
     </p>
-    <a href="{{ object.get_like_url  }}" class="font-semibold text-xl"
+    <a href="{{ object.get_like_url  }}" class="label-detail-blog"
       ><img
         class="object-cover border-black inline mr-2"
         src="{% static 'blog/img/likes.png' %}"
         alt="Numero de personas que han visto el blog"
       />{{ object.get_like_count }}</a
     >
-    <p class="font-semibold text-xl">
+    <p class="label-detail-blog">
       <img
         class="object-cover border-black inline mr-2"
         src="{% static 'blog/img/comentarios.png' %}"
@@ -43,19 +41,19 @@
       />{{ object.get_comentario_count }}
     </p>
   </div>
-  <div class="flex flex-wrap flex-row justify-start gap-7 px-5 pb-3">
+  <div class="container-detail-form pb-3">
     <a
-      class="bg-green-400 px-5 py-2 rounded-lg font-medium"
+      class="bg-green-400 button-decision hover:bg-green-500"
       href=" {% url 'actualiza-post' object.slug %} "
       >Actualizar</a
     ><a
-      class="bg-red-400 px-5 py-2 rounded-lg font-medium"
+      class="bg-red-400 button-decision hover:bg-red-500"
       href=" {% url 'borra-post' object.slug %}"
       >Borrar</a
     >
   </div>
   <div class="text-justify px-10 py-3 bg-slate-200">
-    <p class="text-lg text-black">{{ object.contenido }}</p>
+    <p class="text-blog">{{ object.contenido }}</p>
   </div>
   <div class="flex flex-wrap flex-col justify-start gap-3 px-4 pt-3">
     <p class="text-lg text-black">
@@ -81,22 +79,23 @@
         value="{{ form.contenido.value|default:'' }}"
       ></textarea>
     </div>
-    <button type="submit" class="bg-green-400 px-5 py-2 rounded-md font-medium">
+    <button
+      type="submit"
+      class="bg-green-400 button-decision hover:bg-green-600 hover:text-slate-100"
+    >
       Publicar comentario
     </button>
   </form>
-  <div class="flex flex-wrap flex-col justify-start px-5">
+  <div class="container-sect-comments">
     {% for comentario in object.comentarios %}
     <div
       class="flex flex-wrap flex-row justify-between mb-3 border-b border-slate-900/50 pb-2"
     >
       <div class="flex flex-wrap flex-row justify-evenly">
-        <p class="text-lg text-black font-semibold">
-          @{{ comentario }}:&nbsp&nbsp
-        </p>
-        <p class="text-lg text-black">{{ comentario.contenido }}</p>
+        <p class="text-blog font-semibold">@{{ comentario }}:&nbsp&nbsp</p>
+        <p class="text-blog">{{ comentario.contenido }}</p>
       </div>
-      <p class="text-lg text-black">{{ comentario.fec_cmt|timesince }} atras</p>
+      <p class="text-blog">{{ comentario.fec_cmt|timesince }} atras</p>
     </div>
     {% endfor %}
   </div>
