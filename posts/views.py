@@ -1,10 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.db.models import Count
 from .models import Post, Comentario, Visualizacion, Like, Usuario
 from .forms import PostFormulario, ComentarioFormulario
 
 class VistaListaPosts(ListView):
     model = Post
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # Enlistar los Posts con mas comentarios
+        queryset = queryset.annotate(num_comentarios=Count('comentario')).order_by('-num_comentarios')[:6]
+        return queryset
+    
+class VistaPostsPublicados(ListView):
+    model = Post
+    template_name = 'posts/posts_publicados.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # Ordenar de acuerdo al numero de comentarios
+        queryset = queryset.annotate(num_comentarios=Count('comentario')).order_by('-num_comentarios')
+        return queryset
 
 class VistaDetallePost(DetailView):
     model = Post

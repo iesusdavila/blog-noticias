@@ -32,8 +32,10 @@
           </div>
           <div class="md:flex md:gap-x-12">
             <a href=" {% url 'lista-posts' %} " class="link-nav">Home </a>
+            <a href=" {% url 'post-publicados' %} " class="link-nav"
+              >Publicaciones</a
+            >
             <a href=" {% url 'crea-post' %} " class="link-nav">Crear Blog</a>
-            <a href="#" class="link-nav">Configurar</a>
             <a href="#" class="link-nav">About</a>
           </div>
           <div class="md:flex md:flex-1 md:justify-end">
@@ -44,9 +46,6 @@
         </nav>
       </header>
       {% block content %} {% endblock %}
-      <footer class="bg-slate-800">
-        <p>Hola soy el footer</p>
-      </footer>
     </body>
   </html>
 </html>

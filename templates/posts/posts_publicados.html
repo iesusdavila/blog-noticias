@@ -1,50 +1,6 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<section>
-  <div
-    class="grid grid-cols-7 grid-rows-6 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-7 h-[500px]"
-  >
-    <div class="bg-[#eea899] col-start-4 col-end-8 row-start-2 row-end-7">
-      <img
-        class="object-contain border-black inline w-full h-full px-9 py-4"
-        src="{% static 'blog/img/maxito-inicio.png' %}"
-        alt="Numero de personas que han visto el blog"
-      />
-    </div>
-    <div
-      class="bg-[#f5f5f5] col-start-3 col-end-5 row-start-2 row-end-6 z-50 px-6 py-5 flex flex-col justify-between flex-shrink"
-    >
-      <h2 class="text-2xl font-semibold text-slate-900">Hola, que tal todo?</h2>
-      <p class="text-blog pt-4 pb-7">
-        ¡Bienvenidos! Les deseamos un gran comienzo lleno de motivación y
-        energía para construir un futuro lleno de éxitos y felicidad. Cada día
-        es una oportunidad para avanzar hacia sus metas, y estamos aquí para
-        apoyarlos en todo lo que necesiten.
-      </p>
-      <a
-        class="bg-green-400 button-decision hover:bg-green-500 hover:text-white"
-        href="#"
-        >Acerca de nosotros</a
-      >
-    </div>
-    <div class="bg-[#efc38e] col-start-1 col-end-3 row-start-1 row-end-5">
-      <img
-        class="object-contain border-black inline mr-2 w-full h-full"
-        src="{% static 'blog/img/flores-inicio.png' %}"
-        alt="Numero de personas que han visto el blog"
-      />
-    </div>
-  </div>
-  <p class="text-xl font-semibold text-slate-800 text-center px-72 pt-8 pb-4">
-    Diferentes noticias del mundo actualizadas y sin relaciones intenciones de
-    personas externas. Cada publicación es diferente porque entendemos que cada
-    persona es un universo diferente.
-  </p>
-  <p class="text-xl font-semibold text-slate-800/75 text-center px-40 pb-14">
-    Sueña/Trabaja/Persevera/Disfruta
-  </p>
-</section>
 <main
-  class="mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-[15rem] 2xl:px-96 py-8 bg-[#90d7d79e]"
+  class="mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 xl:px-[15rem] 2xl:px-96 py-8"
 >
   {% for object in object_list %}
   <a href="{{ object.get_absolute_url }}">

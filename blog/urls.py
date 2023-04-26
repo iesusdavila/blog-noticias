@@ -5,6 +5,7 @@ from django.urls import path, include
 
 from posts.views import (
     VistaListaPosts,
+    VistaPostsPublicados,
     VistaDetallePost,
     VistaCreaPost,
     VistaActualizaPost,
@@ -16,6 +17,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', VistaListaPosts.as_view(), name='lista-posts'),
+    path('publicaciones/', VistaPostsPublicados.as_view(), name='post-publicados'),
     path('crear/', VistaCreaPost.as_view(), name='crea-post'),
     path('<slug:slug>/', VistaDetallePost.as_view(), name='detalle-post'),
     path('<slug>/actualizar-post/', VistaActualizaPost.as_view(), name='actualiza-post'),
