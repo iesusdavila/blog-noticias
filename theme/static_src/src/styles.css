@@ -9,7 +9,7 @@
   }
 
   .container-form {
-    @apply mx-6 xl:mx-80 px-40 py-6 mt-5 bg-gradient-to-tr from-indigo-200/50 to-violet-200/50 shadow-2xl shadow-slate-800;
+    @apply xl:mx-80 px-40 py-6 mt-5 mb-16 bg-gradient-to-tr from-indigo-200/50 to-violet-200/50 shadow-2xl shadow-slate-800;
   }
 
   .label-form {
@@ -42,5 +42,17 @@
 
   .text-blog {
     @apply text-lg text-black;
+  }
+
+  .footer-container-redes {
+    @apply bg-white shadow-lg font-normal h-10 w-10 rounded-full outline-none focus:outline-none mr-2 transition duration-300 ease-in-out;
+  }
+
+  .footer-container-redes-img {
+    @apply w-auto h-full mx-auto my-0 p-2;
+  }
+
+  .text-blog-sm {
+    @apply text-black hover:text-zinc-400 font-semibold block pb-2 text-sm;
   }
 }

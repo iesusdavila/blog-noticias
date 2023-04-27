@@ -1,51 +1,140 @@
 {% load static tailwind_tags %} {% load static %}
 
 <html lang="es">
-  <html>
-    <head>
+
+<head>
       <meta charset="UTF-8" />
       {% tailwind_css %}
 
       <title>Blopster - Blog</title>
-      <link
-        rel="icon"
-        href="{% static 'blog/img/blopster/blopster-48.png' %}"
-        type="image/png"
-      />
-    </head>
+      <link rel="icon" href="{% static 'blog/img/blopster/blopster-48.png' %}" type="image/png" />
+</head>
 
-    <body class="bg-[#e6dacf]">
+<body class="bg-[#e6dacf]">
       <header>
-        <nav
-          class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8"
-          aria-label="Global"
-        >
-          <div class="flex md:flex-1">
-            <a href=" {% url 'lista-posts' %} " class="-m-1.5 p-1.5">
-              <span class="sr-only">Blopster</span>
-              <img
-                class=""
-                src="{% static 'blog/img/blopster/blopster-48.png' %}"
-                alt="Blopster - Mi Blog"
-              />
-            </a>
-          </div>
-          <div class="md:flex md:gap-x-12">
-            <a href=" {% url 'lista-posts' %} " class="link-nav">Home </a>
-            <a href=" {% url 'post-publicados' %} " class="link-nav"
-              >Publicaciones</a
-            >
-            <a href=" {% url 'crea-post' %} " class="link-nav">Crear Blog</a>
-            <a href="#" class="link-nav">About</a>
-          </div>
-          <div class="md:flex md:flex-1 md:justify-end">
-            <a href="#" class="link-nav text-indigo-600 hover:text-green-600">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </nav>
+            <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8" aria-label="Global">
+                  <div class="flex md:flex-1">
+                        <a href=" {% url 'lista-posts' %} " class="-m-1.5 p-1.5">
+                              <span class="sr-only">Blopster</span>
+                              <img class="" src="{% static 'blog/img/blopster/blopster-48.png' %}"
+                                    alt="Blopster - Mi Blog" />
+                        </a>
+                  </div>
+                  <div class="md:flex md:gap-x-12">
+                        <a href=" {% url 'lista-posts' %} " class="link-nav">Home </a>
+                        <a href=" {% url 'post-publicados' %} " class="link-nav">Publicaciones</a>
+                        <a href=" {% url 'crea-post' %} " class="link-nav">Crear Blog</a>
+                        <a href="#" class="link-nav">About</a>
+                  </div>
+                  <div class="md:flex md:flex-1 md:justify-end">
+                        <a href="#" class="link-nav text-indigo-600 hover:text-green-600">
+                              Log in <span aria-hidden="true">&rarr;</span>
+                        </a>
+                  </div>
+            </nav>
       </header>
       {% block content %} {% endblock %}
-    </body>
-  </html>
+      <footer class="relative bg-zinc-700 pt-8 pb-6">
+            <div class="container mx-auto px-4">
+                  <div class="flex flex-wrap text-left lg:text-left">
+                        <div class="w-full lg:w-6/12 px-4">
+                              <h4 class="text-3xl font-semibold text-indigo-500">Blopster - Blogs de vida</h4>
+                              <h5 class="text-lg mt-0 mb-2 text-gray-400">
+                                    Encuentra todo lo que necesites en un solo lugar.
+                              </h5>
+                              <div class="mt-6 lg:mb-0 mb-6 flex flex-row flex-wrap place-items-center ">
+                                    <a class="footer-container-redes hover:bg-orange-400"
+                                          href=" https://www.instagram.com/iesusdavilaa/" target="_blank">
+                                          <img class="footer-container-redes-img"
+                                                src="{% static 'blog/img/redes-sociales/instagram.png' %}"
+                                                alt="Red social de Instagram" />
+                                    </a>
+                                    <a class="footer-container-redes hover:bg-slate-600"
+                                          href=" https://github.com/iesusdavila" target="_blank">
+                                          <img class="footer-container-redes-img"
+                                                src="{% static 'blog/img/redes-sociales/github.png' %}"
+                                                alt="Red social de GitHub" />
+                                    </a>
+                                    <a class="footer-container-redes hover:bg-cyan-500"
+                                          href=" https://twitter.com/Iesus_Davila " target="_blank">
+                                          <img class="footer-container-redes-img"
+                                                src="{% static 'blog/img/redes-sociales/twitter.png' %}"
+                                                alt="Red social de Twitter" />
+                                    </a>
+                                    <a class="footer-container-redes hover:bg-slate-400"
+                                          href="https://www.linkedin.com/in/iesus-davila-b1b701211/" target="_blank">
+                                          <img class="footer-container-redes-img"
+                                                src="{% static 'blog/img/redes-sociales/linkedin.png' %}"
+                                                alt="Red social de Linkedin" />
+                                    </a>
+                              </div>
+                        </div>
+                        <div class="w-full lg:w-6/12 px-4">
+                              <div class="flex flex-wrap items-top mb-6">
+                                    <div class="w-full lg:w-4/12 px-4 ml-auto">
+                                          <span class="block uppercase text-slate-500/75 text-sm font-semibold mb-2">Links
+                                                populares</span>
+                                          <ul class="list-unstyled">
+                                                <li>
+                                                      <a class="text-blog-sm" href=" {% url 'lista-posts' %} ">Home
+                                                            Us</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm"
+                                                            href=" {% url 'post-publicados' %} ">Publicaciones</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm" href=" # ">Acerca
+                                                            de nosotros</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm" href="#">Centro
+                                                            de estudio</a>
+                                                </li>
+                                          </ul>
+                                    </div>
+                                    <div class="w-full lg:w-4/12 px-4">
+                                          <span
+                                                class="block uppercase text-slate-500/75 text-sm font-semibold mb-2">Recursos</span>
+                                          <ul class="list-unstyled">
+                                                <li>
+                                                      <a class="text-blog-sm"
+                                                            href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT
+                                                            License</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm"
+                                                            href="https://creative-tim.com/terms?ref=njs-profile">Terminos
+                                                            &amp; Condiciones</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm"
+                                                            href="https://creative-tim.com/privacy?ref=njs-profile">Politica
+                                                            de Privacidad</a>
+                                                </li>
+                                                <li>
+                                                      <a class="text-blog-sm"
+                                                            href="https://creative-tim.com/contact-us?ref=njs-profile">Contactos</a>
+                                                </li>
+                                          </ul>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <hr class="my-2 border-slate-400">
+                  <div class="flex flex-wrap items-center md:justify-between justify-center">
+                        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                              <div class="text-lg text-slate-900 font-semibold py-1">
+                                    Copyright © <span id="get-current-year">2023</span><a
+                                          href="https://www.creative-tim.com/product/notus-js"
+                                          class="text-green-500 hover:text-green-800" target="_blank"> Blopster - Blog
+                                          <a href="https://www.creative-tim.com?ref=njs-profile"
+                                                class="text-blueGray-500">IrDa</a>.
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </footer>
+</body>
+
 </html>
