@@ -16,7 +16,7 @@ Django==3.2.18
 django-allauth==0.54.0
 django-browser-reload==1.8.0
 django-environ==0.10.0
-django-tailwind==3.5.0
+django-tailwind==2.2.2
 gunicorn==20.1.0
 idna==3.4
 Jinja2==3.1.2
